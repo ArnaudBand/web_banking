@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "BB Bank",
   description: "BB Bank is a bank for the people, by the people.",
   icons: {
-    icon: "/icon/logo.svg",
+    icon: "/icons/logo.svg",
   },
 };
 
