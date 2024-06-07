@@ -20,9 +20,9 @@ const Sidebar = ({ user }: SiderbarProps) => {
           const isActive = pathname === link.route || pathname.startsWith(`${link.route}/`)
           return (
             <Link href={link.route} key={link.label} className={cn('sidebar-link', {'bg-bank-gradient': isActive})}>
-              <div className="relative size-6 flex gap-2">
+              <div className="relative size-8 flex items-center gap-2">
                 <Image src={link.imgURL} width={24} height={24} alt={link.label} className={cn({'brightness-[3] invert-0' : isActive})} />
-                <p className={cn({'!text-white': isActive})}>{link.label}</p>
+                <p className={cn('text-black-1 text-sm', {'!text-white': isActive})}>{link.label}</p>
               </div>
             </Link>
           )})}
