@@ -11,15 +11,13 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
 import { Loader2 } from "lucide-react";
-
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-});
+import { authFormSchema } from "@/lib/utils";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const formSchema = authFormSchema(type);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -81,26 +79,31 @@ const AuthForm = ({ type }: { type: string }) => {
                 label="Password"
                 placeholder="Enter your password"
               />
-              <Button className="form-btn" type="submit">
-                {isLoading ? (
-                  <>
-                    <Loader2 className="aminate-spin" size={20} /> &nbsp;
-                    Loading...
-                  </>
-                ) : (
-                  "Sign In"
-                )}
-              </Button>
+              <div className="flex flex-col gap-4">
+                <Button className="form-btn" type="submit">
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="aminate-spin" size={20} /> &nbsp;
+                      Loading...
+                    </>
+                  ) : (
+                    "Sign In"
+                  )}
+                </Button>
+              </div>
             </form>
           </Form>
-          <footer className="flex justify-center gap-1">
+          <footer className="flex items-center justify-center gap-1">
             <p className="text-14 font-normal text-gray-600">
               {type === "sign-in"
                 ? "Don't have an account?"
                 : "Already have an account?"}
             </p>
-            <Link href={type === "sign-in" ? "/sign-up" : "/sign-in"}>
-                {type === "sign-in" ? "Sign Up" : "Sign In"}
+            <Link
+              className="text-14 text-blue-600"
+              href={type === "sign-in" ? "/sign-up" : "/sign-in"}
+            >
+              {type === "sign-in" ? "Sign Up" : "Sign In"}
             </Link>
           </footer>
         </>
