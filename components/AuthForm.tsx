@@ -68,56 +68,56 @@ const AuthForm = ({ type }: { type: string }) => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               {type === "sign-up" && (
                 <>
-                  <CustomInput
-                    control={form.control}
-                    name="firstName"
-                    label="First Name"
-                    placeholder="Enter your first name"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="lastName"
-                    label="Last Name"
-                    placeholder="Enter your last name"
-                  />
+                  <div className="flex gap-4">
+                    <CustomInput
+                      control={form.control}
+                      name="firstName"
+                      label="First Name"
+                      placeholder="Enter your first name"
+                    />
+                    <CustomInput
+                      control={form.control}
+                      name="lastName"
+                      label="Last Name"
+                      placeholder="Enter your last name"
+                    />
+                  </div>
+
                   <CustomInput
                     control={form.control}
                     name="address"
                     label="Address"
                     placeholder="Enter your address"
                   />
-                  <CustomInput
-                    control={form.control}
-                    name="city"
-                    label="City"
-                    placeholder="Enter your city"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="state"
-                    label="State"
-                    placeholder="Example: NY"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="postalCode"
-                    label="Postal Code"
-                    placeholder="Example: 11101"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="dateOfBirth"
-                    label="Date of Birth"
-                    placeholder="YYYY-MM-DD"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="ssn"
-                    label="SSN"
-                    placeholder="EXample: 123-45-6789"
-                  />
+                  <div className="flex gap-4">
+                    <CustomInput
+                      control={form.control}
+                      name="state"
+                      label="State"
+                      placeholder="Example: BUJA"
+                    />
+                    <CustomInput
+                      control={form.control}
+                      name="postalCode"
+                      label="Postal Code"
+                      placeholder="Example: 11101"
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <CustomInput
+                      control={form.control}
+                      name="dateOfBirth"
+                      label="Date of Birth"
+                      placeholder="YYYY-MM-DD"
+                    />
+                    <CustomInput
+                      control={form.control}
+                      name="ssn"
+                      label="SSN"
+                      placeholder="EXample: 123-45-6789"
+                    />
+                  </div>
                 </>
-              
               )}
               <CustomInput
                 control={form.control}
@@ -139,9 +139,9 @@ const AuthForm = ({ type }: { type: string }) => {
                       <Loader2 className="aminate-spin" size={20} /> &nbsp;
                       Loading...
                     </>
-                  ) : (
-                    "Sign In"
-                  )}
+                  ) : type === 'sign-in' 
+                  ? "Sign In" : 'Sign Up'
+                  }
                 </Button>
               </div>
             </form>
