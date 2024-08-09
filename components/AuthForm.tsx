@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import {useRouter} from "next/navigation"
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,9 +13,10 @@ import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
 import { Loader2 } from "lucide-react";
 import { authFormSchema } from "@/lib/utils";
-import { signUp } from "@/lib/actions/user.actions";
+import { signUp, signIn } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,7 +38,13 @@ const AuthForm = ({ type }: { type: string }) => {
         const newUser = await signUp(data);
         setUser(newUser);
       }
-      if (type === "sign-in") {}
+      if (type === "sign-in") {
+        const response = await signIn({
+          email: data.email,
+          password: data.password
+        });
+        if (response) router.push('/')
+      }
     } catch (error) {
       console.log(error)
       setIsLoading(false)
